@@ -1,0 +1,48 @@
+data;
+
+set PRODUCENTS := P1 P2 P3 P4 P5 P6 ;
+set WAREHOUSES := M1 M2 M3  ;
+set VEGETABLES := Ziemniaki Kapusta Buraki Marchew ;
+set STORES	   := S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 ;
+
+
+param supply (tr):
+			Ziemniaki	Kapusta	Buraki	Marchew :=
+	P1    	120    		80    	120		60
+	P2    	50    		90    	160		50
+	P3  	160    		70    	190		90
+	P4  	230    		50    	30		110
+	P5  	220    		230    	180		100
+	P6  	370    		150    	50		90 ;
+
+param: WAREHOUSES: max_capacity :=
+	M1	800
+	M2	1200
+	M3	750 ;
+
+/*
+param demand (tr):
+           FRA   DET   LAN   WIN   STL   FRE   LAF :=
+   bands   300   300   100    75   650   225   250
+   coils   500   750   400   250   950   850   500
+   plate   100   100     0    50   200   100   250 ;
+
+param limit default 625 ;
+
+param cost :=
+
+ [*,*,bands]:  FRA  DET  LAN  WIN  STL  FRE  LAF :=
+        GARY    30   10    8   10   11   71    6
+        CLEV    22    7   10    7   21   82   13
+        PITT    19   11   12   10   25   83   15
+
+ [*,*,coils]:  FRA  DET  LAN  WIN  STL  FRE  LAF :=
+        GARY    39   14   11   14   16   82    8
+        CLEV    27    9   12    9   26   95   17
+        PITT    24   14   17   13   28   99   20
+
+ [*,*,plate]:  FRA  DET  LAN  WIN  STL  FRE  LAF :=
+        GARY    41   15   12   16   17   86    8
+        CLEV    29    9   13    9   28   99   18
+        PITT    26   14   17   13   31  104   20 ;
+*/
