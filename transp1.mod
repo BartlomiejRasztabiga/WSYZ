@@ -3,14 +3,27 @@ set WAREHOUSES;   # warehouses
 set VEGETABLES;   # vegetables
 set STORES;		  # stores
 
-param supply 		{PRODUCENTS,VEGETABLES} >= 0;  	# amounts available at producents
-param max_capacity 	{WAREHOUSES} >= 0;       		# max capacity available at warehouses
+param supply 		{PRODUCENTS,VEGETABLES} >= 0;  						# amounts available at producents
+param max_capacity 	{WAREHOUSES} >= 0;       							# max capacity available at warehouses
 
-var yearly_transport_to_warehouses {PRODUCENTS,WAREHOUSES,VEGETABLES}; # units to be shipped
+param distance_to_warehouse {PRODUCENTS,WAREHOUSES} >= 0;  				# distance from producent to warehouse
+param distance_to_store 	{WAREHOUSES,STORES} >= 0;  					# distance from warehouse to store
+
+param km_cost >= 0;														# cost to move 1 ton by 1km
+
+var yearly_transport_to_warehouses {PRODUCENTS,WAREHOUSES,VEGETABLES}; 	# tons transported from producents to warehouses yearly
+
+minimize Total_Cost:
+   sum {p in PRODUCENTS, w in WAREHOUSES, v in VEGETABLES}
+      km_cost * yearly_transport_to_warehouses[p,w,v];
+
 # TODO jakie jest demand dla magazynu?
 # TODO ustalic koszty transportu producent->magazyn
 # TODO jakie jest demand dla sklepow?
 # TODO ustalic koszty transportu magazyn->sklep
+
+# TODO ograniczenie: yearly_transport_to_warehouses <= max_capacity dla magazynu
+# TODO ograniczenie: yearly_transport_to_warehouses <= supply
 
 /*
 param supply {PRODUCENTS,VEGETABLES} >= 0;  # amounts available at origins
