@@ -6,6 +6,12 @@ set STORES;		  # stores
 param supply 		{PRODUCENTS,VEGETABLES} >= 0;  	# amounts available at producents
 param max_capacity 	{WAREHOUSES} >= 0;       		# max capacity available at warehouses
 
+var yearly_transport_to_warehouses {PRODUCENTS,WAREHOUSES,VEGETABLES}; # units to be shipped
+# TODO jakie jest demand dla magazynu?
+# TODO ustalic koszty transportu producent->magazyn
+# TODO jakie jest demand dla sklepow?
+# TODO ustalic koszty transportu magazyn->sklep
+
 /*
 param supply {PRODUCENTS,VEGETABLES} >= 0;  # amounts available at origins
 param demand {WAREHOUSES,VEGETABLES} >= 0;  # amounts required at destinations

@@ -3,3 +3,4 @@ model transp1.mod;
 data transp1.dat;
 option solver cplex;
 solve;
+display yearly_transport_to_warehouses;
