@@ -9,6 +9,10 @@ param max_capacity 	{WAREHOUSES} >= 0;       							# max capacity available at 
 param distance_to_warehouse {PRODUCENTS,WAREHOUSES} >= 0;  				# distance from producent to warehouse
 param distance_to_store 	{WAREHOUSES,STORES} >= 0;  					# distance from warehouse to store
 
+param weekly_sales_forecast {VEGETABLES,STORES} >= 0;  					# weekly sales forecast for vegetable and store
+
+param store_warehouse_capacity 	{STORES} >= 0;       				# max store warehouse capacity available at the store
+
 param km_cost >= 0;														# cost to move 1 ton by 1km
 
 var yearly_transport_to_warehouses {PRODUCENTS,WAREHOUSES,VEGETABLES}; 	# tons transported from producents to warehouses yearly
@@ -24,6 +28,10 @@ minimize Total_Cost:
 
 # TODO ograniczenie: yearly_transport_to_warehouses <= max_capacity dla magazynu
 # TODO ograniczenie: yearly_transport_to_warehouses <= supply
+# TODO ograniczenie: Zapas warzyw nie powinien przekroczyć pojemności przysklepowego magazynu
+# TODO ograniczenie: należy zachować minimalne zapasy każdego z warzyw (na wypadek błędów prognozy, należy przyjąć sensowne wartości, np. 10% średniej sprzedaży w tygodniu)
+
+
 
 /*
 param supply {PRODUCENTS,VEGETABLES} >= 0;  # amounts available at origins
