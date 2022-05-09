@@ -31,15 +31,14 @@ minimize Total_Cost:
 	sum {w in WAREHOUSES, s in STORES, v in VEGETABLES}
    		distance_to_store[w,s] * km_cost * 52 * weekly_transport_to_stores[w,s,v];
     
+# ograniczenie: transport do sklepów + należy zachować minimalne zapasy każdego z warzyw  np. 10% średniej sprzedaży w tygodniu
 subject to Store_Weekly_Supply {v in VEGETABLES, s in STORES}:
 	sum {w in WAREHOUSES}
-		weekly_transport_to_stores[w, s, v] = weekly_sales_forecast[v, s];
+		weekly_transport_to_stores[w, s, v] = 1.1 * weekly_sales_forecast[v, s];
 	
 # TODO obslugiwac transport co tydzien, a nie co rok * 52 :p
-# TODO ograniczenie: należy zachować minimalne zapasy każdego z warzyw (na wypadek błędów prognozy, należy przyjąć sensowne wartości, np. 10% średniej sprzedaży w tygodniu)
-# stąd to 1.1?
 subject to Warehouse_Supply {w in WAREHOUSES, v in VEGETABLES}:
-	sum {p in PRODUCENTS} yearly_transport_to_warehouses[p, w, v] >= sum {s in STORES} 52 * 1.1 * weekly_transport_to_stores[w, s, v];
+	sum {p in PRODUCENTS} yearly_transport_to_warehouses[p, w, v] >= sum {s in STORES} 52 * weekly_transport_to_stores[w, s, v];
 
 # ograniczenie: producent supply!
 subject to Producent_Supply {p in PRODUCENTS, v in VEGETABLES}:
