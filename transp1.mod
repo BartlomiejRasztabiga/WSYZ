@@ -12,7 +12,7 @@ param distance_to_store 	{WAREHOUSES,STORES} > 0;  							# distance from wareho
 param weekly_sales_forecast {VEGETABLES,STORES} >= 0;  							# weekly sales forecast for vegetable and store
 
 
-set WEEK = 1..52;
+set WEEK = 1..3;
 param weekly_sales_forecast1 {STORES, WEEK, VEGETABLES} >= 0;  					# TODO weekly sales forecast for vegetable and store
 
 param store_warehouse_capacity 	{STORES} >= 0;       							# max store warehouse capacity available at the store
