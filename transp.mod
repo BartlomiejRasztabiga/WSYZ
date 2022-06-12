@@ -27,6 +27,10 @@ minimize Total_Cost:
 # ograniczenie: Wymagana ilosc warzyw w przysklepowych magazynach
 subject to Store_Warehouse_Demand {s in STORES, n in 2..T, v in VEGETABLES}:
 	weekly_stores_warehouse_stock[n, s, v] = weekly_stores_warehouse_stock[n-1, s, v] - weekly_sales_forecast[n, s, v] + sum {w in WAREHOUSES} weekly_transport_to_stores[n, w, s, v];
+	
+# ograniczenie: Wymagana ilosc warzyw w przysklepowych magazynach w 1 tygodniu
+subject to Store_Warehouse_Demand_1_week {s in STORES, v in VEGETABLES}:
+	weekly_stores_warehouse_stock[1, s, v] = - weekly_sales_forecast[1, s, v] + sum {w in WAREHOUSES} weekly_transport_to_stores[1, w, s, v];
 
 # ograniczenie: Zapas warzyw nie powinien przekroczyc pojemnosci przysklepowego magazynu
 subject to Store_Warehouse_Max_Capacity {s in STORES, n in 1..T}:

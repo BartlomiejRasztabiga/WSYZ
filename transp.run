@@ -2,5 +2,6 @@ reset;
 model transp.mod;
 data transp.dat;
 option solver cplex;
+option display_width 150;
 solve;
 display yearly_transport_to_warehouses, weekly_transport_to_stores, weekly_stores_warehouse_stock, Total_Cost;
